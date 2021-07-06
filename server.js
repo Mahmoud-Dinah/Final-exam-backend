@@ -10,7 +10,8 @@ app.use(express.json());
 app.use(cors());
 const mongoose = require('mongoose');
 
-
+const getAllApiData = require('./Controller/getAllApit.controller')
+const {createFavData, getFavData, deleteFavData, updateFavData} = require('./Controller/crudData.controller')
 
 mongoose.connect('mongodb://localhost:27017/examdb', {
 
@@ -22,7 +23,11 @@ app.get('/', (req, res)=>{
     res.send('proof of life')
 });
 
-
+app.get('/alldata', getAllApiData)
+app.post('/alldata/fav', createFavData)
+app.get('/alldata/fav', getFavData)
+app.delete('/alldata/fav/:idDrink', deleteFavData)
+app.put('/alldata/fav/:idDrink', updateFavData)
 
 
 
